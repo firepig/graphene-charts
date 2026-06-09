@@ -1,0 +1,95 @@
+{
+  "name": "graphene-charts",
+  "version": "0.1.0",
+  "description": "Production-grade React chart components with a dead-easy CSS variable theming system. Built on @visx, d3, and Motion. No shadcn/ui required.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./themes.css": "./dist/themes.css"
+  },
+  "sideEffects": [
+    "dist/themes.css"
+  ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup && node -e \"require('fs').copyFileSync('src/themes.css','dist/themes.css')\"",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm run typecheck"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.5.0",
+    "@number-flow/react": "^0.6.0",
+    "@visx/axis": "^3.12.0",
+    "@visx/brush": "^3.12.0",
+    "@visx/event": "^3.12.0",
+    "@visx/gradient": "^3.12.0",
+    "@visx/grid": "^3.12.0",
+    "@visx/heatmap": "^3.12.0",
+    "@visx/hierarchy": "^3.12.0",
+    "@visx/network": "^3.12.0",
+    "@visx/pattern": "^3.12.0",
+    "@visx/responsive": "^3.12.0",
+    "@visx/sankey": "^4.0.1-alpha.0",
+    "@visx/scale": "^3.12.0",
+    "@visx/shape": "^3.12.0",
+    "@visx/zoom": "^3.12.0",
+    "clsx": "^2.1.1",
+    "d3-array": "^3.2.4",
+    "d3-force": "^3.0.0",
+    "d3-interpolate": "^3.0.1",
+    "d3-sankey": "^0.12.3",
+    "d3-scale": "^4.0.2",
+    "d3-shape": "^3.2.0",
+    "mermaid": "^11.15.0",
+    "motion": "^12.0.0",
+    "react-use-measure": "^2.1.7",
+    "tailwind-merge": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/d3-sankey": "^0.12.4",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.7.0"
+  },
+  "keywords": [
+    "charts",
+    "react",
+    "visualization",
+    "theming",
+    "css-variables",
+    "visx",
+    "d3",
+    "motion",
+    "sankey",
+    "treemap",
+    "candlestick",
+    "dashboard"
+  ],
+  "homepage": "https://github.com/YOUR_USERNAME/graphene-charts#readme",
+  "bugs": {
+    "url": "https://github.com/YOUR_USERNAME/graphene-charts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/graphene-charts"
+  }
+}

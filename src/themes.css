@@ -1,0 +1,278 @@
+/*
+ * Graphene Charts — Theme System
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Apply one of the theme classes to any ancestor element (or :root) to
+ * activate it. All chart components read exclusively from these CSS variables,
+ * so swapping a theme class is all it takes to re-skin every chart at once.
+ *
+ * Usage:
+ *   <div class="gc-dark">   ← default dark/violet theme
+ *   <div class="gc-light">  ← light theme, same violet palette
+ *   <div class="gc-ocean">  ← deep-blue palette
+ *   <div class="gc-rose">   ← warm rose/amber palette
+ *
+ * Granular overrides — just set any variable on a child element:
+ *   .my-card { --chart-1: #ff6b35; }
+ */
+
+/* ── Shared accent defaults (same across all themes unless overridden) ──── */
+.gc-dark,
+.gc-light,
+.gc-ocean,
+.gc-rose {
+  /* ── Series colors ─────────────────────────────────────────────────────── */
+  --chart-1: #8b5cf6;
+  --chart-2: #06b6d4;
+  --chart-3: #10b981;
+  --chart-4: #f59e0b;
+  --chart-5: #ef4444;
+
+  /* ── Directional / finance ─────────────────────────────────────────────── */
+  --chart-up:      #10b981;   /* bullish candle, positive delta, gain  */
+  --chart-down:    #ef4444;   /* bearish candle, negative delta, loss  */
+  --chart-neutral: #8b5cf6;   /* waterfall totals, neutral state        */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* Dark theme (default)                                                       */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+.gc-dark {
+  /* Surfaces */
+  --chart-surface:        #0d1117;
+  --chart-surface-raised: #161b27;
+  --chart-border:         #1e2535;
+
+  /* Text */
+  --chart-foreground:       #e2e8f0;
+  --chart-foreground-muted: #475569;
+  --chart-label:            #64748b;   /* axis tick labels */
+
+  /* Chart structure */
+  --chart-grid:      rgba(255, 255, 255, 0.06);   /* gridlines          */
+  --chart-axis:      rgba(255, 255, 255, 0.20);   /* axis lines         */
+  --chart-overlay:   rgba(255, 255, 255, 0.45);   /* median, whiskers   */
+  --chart-crosshair: rgba(255, 255, 255, 0.15);   /* hover crosshair    */
+
+  /* Series line defaults */
+  --chart-line-primary:   #8b5cf6;
+  --chart-line-secondary: #06b6d4;
+
+  /* Tooltip */
+  --chart-tooltip-background: rgba(13, 17, 23, 0.95);
+  --chart-tooltip-foreground: #f1f5f9;
+  --chart-tooltip-muted:      #94a3b8;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* Light theme                                                                */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+.gc-light {
+  --chart-surface:        #ffffff;
+  --chart-surface-raised: #f8fafc;
+  --chart-border:         #e2e8f0;
+
+  --chart-foreground:       #0f172a;
+  --chart-foreground-muted: #64748b;
+  --chart-label:            #94a3b8;
+
+  --chart-grid:      rgba(0, 0, 0, 0.06);
+  --chart-axis:      rgba(0, 0, 0, 0.20);
+  --chart-overlay:   rgba(0, 0, 0, 0.35);
+  --chart-crosshair: rgba(0, 0, 0, 0.10);
+
+  --chart-line-primary:   #8b5cf6;
+  --chart-line-secondary: #06b6d4;
+
+  --chart-tooltip-background: rgba(255, 255, 255, 0.97);
+  --chart-tooltip-foreground: #0f172a;
+  --chart-tooltip-muted:      #64748b;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* Ocean theme                                                                */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+.gc-ocean {
+  --chart-1: #3b82f6;
+  --chart-2: #06b6d4;
+  --chart-3: #0ea5e9;
+  --chart-4: #6366f1;
+  --chart-5: #8b5cf6;
+
+  --chart-up:      #06b6d4;
+  --chart-down:    #6366f1;
+  --chart-neutral: #3b82f6;
+
+  --chart-surface:        #0a1628;
+  --chart-surface-raised: #0f2044;
+  --chart-border:         #1e3a5f;
+
+  --chart-foreground:       #e0f2fe;
+  --chart-foreground-muted: #4a7fa5;
+  --chart-label:            #336080;
+
+  --chart-grid:      rgba(56, 189, 248, 0.08);
+  --chart-axis:      rgba(56, 189, 248, 0.22);
+  --chart-overlay:   rgba(224, 242, 254, 0.45);
+  --chart-crosshair: rgba(56, 189, 248, 0.18);
+
+  --chart-line-primary:   #3b82f6;
+  --chart-line-secondary: #06b6d4;
+
+  --chart-tooltip-background: rgba(10, 22, 40, 0.95);
+  --chart-tooltip-foreground: #e0f2fe;
+  --chart-tooltip-muted:      #4a7fa5;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* Rose theme                                                                 */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+.gc-rose {
+  --chart-1: #f43f5e;
+  --chart-2: #fb923c;
+  --chart-3: #fbbf24;
+  --chart-4: #a855f7;
+  --chart-5: #ec4899;
+
+  --chart-up:      #fbbf24;
+  --chart-down:    #f43f5e;
+  --chart-neutral: #a855f7;
+
+  --chart-surface:        #1a0a10;
+  --chart-surface-raised: #2a1020;
+  --chart-border:         #4a1530;
+
+  --chart-foreground:       #fce7f3;
+  --chart-foreground-muted: #9f4f6a;
+  --chart-label:            #7a3050;
+
+  --chart-grid:      rgba(244, 63, 94, 0.08);
+  --chart-axis:      rgba(244, 63, 94, 0.22);
+  --chart-overlay:   rgba(252, 231, 243, 0.45);
+  --chart-crosshair: rgba(244, 63, 94, 0.15);
+
+  --chart-line-primary:   #f43f5e;
+  --chart-line-secondary: #fb923c;
+
+  --chart-tooltip-background: rgba(26, 10, 16, 0.95);
+  --chart-tooltip-foreground: #fce7f3;
+  --chart-tooltip-muted:      #9f4f6a;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* Cyberpunk theme                                                            */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+.gc-cyberpunk {
+  --chart-1: #f0ff00;   /* neon yellow  */
+  --chart-2: #00ffff;   /* electric cyan */
+  --chart-3: #00ff88;   /* neon green   */
+  --chart-4: #ff6600;   /* neon orange  */
+  --chart-5: #ff00aa;   /* hot pink     */
+
+  --chart-up:      #00ff88;
+  --chart-down:    #ff00aa;
+  --chart-neutral: #f0ff00;
+
+  --chart-surface:        #08000f;
+  --chart-surface-raised: #0e0018;
+  --chart-border:         #2a0055;
+
+  --chart-foreground:       #eeeeff;
+  --chart-foreground-muted: #7055aa;
+  --chart-label:            #4a3880;
+
+  --chart-grid:      rgba(0, 255, 255, 0.07);
+  --chart-axis:      rgba(0, 255, 255, 0.28);
+  --chart-overlay:   rgba(240, 255, 0, 0.55);
+  --chart-crosshair: rgba(0, 255, 255, 0.18);
+
+  --chart-line-primary:   #f0ff00;
+  --chart-line-secondary: #00ffff;
+
+  --chart-tooltip-background: rgba(8, 0, 15, 0.97);
+  --chart-tooltip-foreground: #f0ff00;
+  --chart-tooltip-muted:      #7055aa;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* Monochrome theme                                                           */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+.gc-mono {
+  --chart-1: #ffffff;
+  --chart-2: #b8b8b8;
+  --chart-3: #888888;
+  --chart-4: #585858;
+  --chart-5: #383838;
+
+  --chart-up:      #d8d8d8;
+  --chart-down:    #585858;
+  --chart-neutral: #a0a0a0;
+
+  --chart-surface:        #090909;
+  --chart-surface-raised: #141414;
+  --chart-border:         #282828;
+
+  --chart-foreground:       #f0f0f0;
+  --chart-foreground-muted: #585858;
+  --chart-label:            #444444;
+
+  --chart-grid:      rgba(255, 255, 255, 0.06);
+  --chart-axis:      rgba(255, 255, 255, 0.18);
+  --chart-overlay:   rgba(255, 255, 255, 0.42);
+  --chart-crosshair: rgba(255, 255, 255, 0.12);
+
+  --chart-line-primary:   #ffffff;
+  --chart-line-secondary: #888888;
+
+  --chart-tooltip-background: rgba(9, 9, 9, 0.97);
+  --chart-tooltip-foreground: #f0f0f0;
+  --chart-tooltip-muted:      #585858;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* Mono Light theme  (reverse monochrome — white bg, dark series)            */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+.gc-mono-light {
+  --chart-1: #111111;
+  --chart-2: #3a3a3a;
+  --chart-3: #636363;
+  --chart-4: #8c8c8c;
+  --chart-5: #b5b5b5;
+
+  --chart-up:      #111111;
+  --chart-down:    #8c8c8c;
+  --chart-neutral: #3a3a3a;
+
+  --chart-surface:        #f5f5f5;
+  --chart-surface-raised: #ffffff;
+  --chart-border:         #dedede;
+
+  --chart-foreground:       #111111;
+  --chart-foreground-muted: #8c8c8c;
+  --chart-label:            #aaaaaa;
+
+  --chart-grid:      rgba(0, 0, 0, 0.06);
+  --chart-axis:      rgba(0, 0, 0, 0.18);
+  --chart-overlay:   rgba(0, 0, 0, 0.35);
+  --chart-crosshair: rgba(0, 0, 0, 0.10);
+
+  --chart-line-primary:   #111111;
+  --chart-line-secondary: #636363;
+
+  --chart-tooltip-background: rgba(255, 255, 255, 0.97);
+  --chart-tooltip-foreground: #111111;
+  --chart-tooltip-muted:      #8c8c8c;
+}
+
+/* ── Backward-compat alias (the demo used .v as the theme class) ─────────── */
+.v {
+  --chart-1: #8b5cf6; --chart-2: #06b6d4; --chart-3: #10b981;
+  --chart-4: #f59e0b; --chart-5: #ef4444;
+  --chart-up: #10b981; --chart-down: #ef4444; --chart-neutral: #8b5cf6;
+  --chart-surface: #0d1117; --chart-surface-raised: #161b27; --chart-border: #1e2535;
+  --chart-foreground: #e2e8f0; --chart-foreground-muted: #475569; --chart-label: #64748b;
+  --chart-grid: rgba(255,255,255,0.06); --chart-axis: rgba(255,255,255,0.20);
+  --chart-overlay: rgba(255,255,255,0.45); --chart-crosshair: rgba(255,255,255,0.15);
+  --chart-line-primary: #8b5cf6; --chart-line-secondary: #06b6d4;
+  --chart-tooltip-background: rgba(13,17,23,0.95);
+  --chart-tooltip-foreground: #f1f5f9; --chart-tooltip-muted: #94a3b8;
+}

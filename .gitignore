@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+demo/node_modules/
+
+# Build outputs
+dist/
+demo/dist/
+
+# Vite / TypeScript cache
+*.tsbuildinfo
+demo/.vite/
+
+# Debug scripts
+demo/debug-*.mjs
+
+# Screenshots / local test images
+*.png
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env files
+.env
+.env.local

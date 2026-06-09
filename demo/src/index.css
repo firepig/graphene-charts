@@ -1,0 +1,212 @@
+@import "tailwindcss";
+@source "../../src/**/*.{tsx,ts}";
+@import "../../src/themes.css";
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Smooth theme transitions on structural elements ────────────────────── */
+body,
+.card,
+.card-title,
+.section-title,
+h1, h2,
+.subtitle,
+.theme-bar {
+  transition:
+    background-color 0.45s ease,
+    border-color     0.45s ease,
+    color            0.45s ease;
+}
+
+body {
+  background: var(--chart-surface);
+  color: var(--chart-foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", sans-serif;
+  min-height: 100vh;
+  padding: 80px 32px 80px;   /* extra top padding for the sticky bar */
+}
+
+h1 { font-size: 36px; font-weight: 800; color: var(--chart-foreground); margin-bottom: 10px; letter-spacing: -0.02em; }
+.subtitle { font-size: 15px; color: var(--chart-foreground-muted); margin-bottom: 0; max-width: 560px; line-height: 1.6; }
+
+/* ── Hero ────────────────────────────────────────────────────────────────── */
+.hero {
+  padding: 48px 0 40px;
+  border-bottom: 1px solid var(--chart-border);
+  margin-bottom: 40px;
+}
+.hero-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--chart-1);
+  border: 1px solid var(--chart-1);
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+.install-block {
+  margin-top: 24px;
+  background: var(--chart-surface-raised);
+  border: 1px solid var(--chart-border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: monospace;
+  font-size: 13px;
+  max-width: 420px;
+}
+.install-cmd {
+  color: var(--chart-foreground);
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--chart-border);
+}
+.install-usage {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--chart-foreground);
+  font-size: 12px;
+}
+.install-comment { color: var(--chart-foreground-muted); }
+.hero-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--chart-border);
+  color: var(--chart-foreground-muted);
+  transition: border-color 0.2s, color 0.2s;
+}
+.hero-link:hover { border-color: var(--chart-axis); color: var(--chart-foreground); }
+.hero-link-primary {
+  background: var(--chart-1);
+  border-color: transparent;
+  color: #fff;
+}
+.hero-link-primary:hover { border-color: transparent; color: #fff; opacity: 0.9; }
+
+/* ── Section nav ─────────────────────────────────────────────────────────── */
+.section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--chart-border);
+}
+.snav-link {
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--chart-foreground-muted);
+  border: 1px solid var(--chart-border);
+  border-radius: 20px;
+  padding: 3px 10px;
+  transition: border-color 0.15s, color 0.15s;
+}
+.snav-link:hover { color: var(--chart-foreground); border-color: var(--chart-axis); }
+
+.section { margin-bottom: 56px; }
+.section-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--chart-foreground-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--chart-border);
+}
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+.grid-2 > *, .grid-3 > * { min-width: 0; }
+
+.card {
+  background: var(--chart-surface-raised);
+  border: 1px solid var(--chart-border);
+  border-radius: 12px;
+  padding: 24px;
+}
+.card-title { font-size: 13px; font-weight: 500; color: var(--chart-label); margin-bottom: 16px; }
+
+/* ── Sticky theme bar ────────────────────────────────────────────────────── */
+.theme-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 32px;
+  background: var(--chart-surface-raised);
+  border-bottom: 1px solid var(--chart-border);
+  backdrop-filter: blur(12px);
+}
+.theme-bar-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--chart-foreground-muted);
+  margin-right: 4px;
+}
+.theme-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--chart-border);
+  background: transparent;
+  color: var(--chart-foreground-muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  font-family: inherit;
+}
+.theme-btn:hover { border-color: var(--chart-axis); color: var(--chart-foreground); }
+.theme-btn.active {
+  color: #fff;
+  border-color: transparent;
+}
+.theme-swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Theme creator – smooth open/close for the drawer ───────────────────── */
+.tc-drawer {
+  transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* Scrollbar styling inside the creator panel */
+.theme-creator-scroll::-webkit-scrollbar { width: 5px; }
+.theme-creator-scroll::-webkit-scrollbar-track { background: transparent; }
+.theme-creator-scroll::-webkit-scrollbar-thumb {
+  background: var(--chart-border);
+  border-radius: 4px;
+}
