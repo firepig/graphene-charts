@@ -30,23 +30,29 @@ function BarYAxisLabel({
     <div
       className="absolute right-0 flex items-center justify-end pr-2"
       style={{
+        position: "absolute",
         top: y,
+        right: 0,
         height: bandHeight,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        paddingRight: 8,
       }}
     >
       <motion.span
         animate={{
           opacity: isHovered ? 1 : 0.7,
           color: isHovered
-            ? "var(--foreground)"
-            : "var(--chart-label, var(--color-zinc-500))",
+            ? "var(--chart-foreground, #e2e8f0)"
+            : "var(--chart-label, #64748b)",
         }}
         className={cn("truncate whitespace-nowrap text-right text-xs")}
         initial={{
           opacity: 0.7,
-          color: "var(--chart-label, var(--color-zinc-500))",
+          color: "var(--chart-label, #64748b)",
         }}
-        style={{ maxWidth: 70 }}
+        style={{ maxWidth: 70, fontSize: "0.75rem", whiteSpace: "nowrap", textAlign: "right" }}
         transition={{ duration: 0.15 }}
       >
         {label}
@@ -117,10 +123,13 @@ const BarYAxisInner = memo(function BarYAxisInner({
 
   return createPortal(
     <div
-      className="pointer-events-none absolute top-0 bottom-0"
       style={{
+        position: "absolute",
+        top: 0,
+        bottom: 0,
         left: 0,
         width: margin.left,
+        pointerEvents: "none",
       }}
     >
       {labelsToShow.map((item) => (

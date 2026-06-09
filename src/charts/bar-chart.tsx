@@ -681,7 +681,7 @@ export function BarChart({
     <div
       className={cn("relative w-full", className)}
       ref={containerRef}
-      style={{ aspectRatio, overflow: "hidden" }}
+      style={{ aspectRatio, overflow: "hidden", position: "relative" }}
     >
       <ParentSize debounceTime={10}>
         {({ width, height }) => (

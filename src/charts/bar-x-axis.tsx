@@ -24,8 +24,8 @@ interface BarXAxisLabelProps {
 function BarXAxisLabel({ label, x, isFaded }: BarXAxisLabelProps) {
   return (
     <div
-      className="absolute"
       style={{
+        position: "absolute",
         left: x,
         bottom: 12,
         width: 0,
@@ -37,6 +37,11 @@ function BarXAxisLabel({ label, x, isFaded }: BarXAxisLabelProps) {
         animate={{ opacity: isFaded ? 0.35 : 1 }}
         className={cn("whitespace-nowrap text-chart-label text-xs")}
         initial={{ opacity: 1 }}
+        style={{
+          whiteSpace: "nowrap",
+          fontSize: "0.75rem",
+          color: "var(--chart-label, #64748b)",
+        }}
         transition={{ duration: 0.15, ease: "easeOut" }}
       >
         {label}
@@ -54,8 +59,8 @@ interface BarYAxisLabelProps {
 function BarYAxisLabel({ label, y, isFaded }: BarYAxisLabelProps) {
   return (
     <div
-      className="absolute"
       style={{
+        position: "absolute",
         top: y,
         left: 0,
         height: 0,
@@ -69,6 +74,11 @@ function BarYAxisLabel({ label, y, isFaded }: BarYAxisLabelProps) {
         animate={{ opacity: isFaded ? 0.35 : 1 }}
         className={cn("whitespace-nowrap text-chart-label text-xs")}
         initial={{ opacity: 1 }}
+        style={{
+          whiteSpace: "nowrap",
+          fontSize: "0.75rem",
+          color: "var(--chart-label, #64748b)",
+        }}
         transition={{ duration: 0.15, ease: "easeOut" }}
       >
         {label}
@@ -148,7 +158,7 @@ const BarXAxisInner = memo(function BarXAxisInner({
 
   if (isHorizontal) {
     return createPortal(
-      <div className="pointer-events-none absolute inset-0" style={{ width: margin.left }}>
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", width: margin.left }}>
         {(labelsToShow as { label: string; y: number; index: number }[]).map((item) => (
           <BarYAxisLabel
             key={`${item.label}-${item.y}`}
@@ -163,7 +173,7 @@ const BarXAxisInner = memo(function BarXAxisInner({
   }
 
   return createPortal(
-    <div className="pointer-events-none absolute inset-0">
+    <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
       {(labelsToShow as { label: string; x: number; index: number }[]).map((item) => (
         <BarXAxisLabel
           key={`${item.label}-${item.x}-${item.index}`}

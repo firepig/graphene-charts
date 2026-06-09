@@ -120,12 +120,17 @@ function isPieCenter(child: ReactNode): boolean {
 }
 
 function isPieSlice(child: ReactNode): boolean {
-  return (
-    isValidElement(child) &&
-    typeof child.type === "function" &&
-    ((child.type as { displayName?: string }).displayName === "PieSlice" ||
-      (child.type as { name?: string }).name === "PieSlice")
-  );
+  if (!isValidElement(child)) return false;
+  // child.type may be a plain function OR a React.memo wrapper (an object with
+  // a nested .type function). Check both layers so memo-wrapped PieSlice works.
+  const t = child.type as {
+    displayName?: string;
+    name?: string;
+    type?: { displayName?: string; name?: string };
+  };
+  const label =
+    t.displayName || t.name || t.type?.displayName || t.type?.name || "";
+  return label === "PieSlice";
 }
 
 // Helper to check if a component is a gradient or pattern definition
@@ -322,6 +327,7 @@ const PieChartCore = memo(function PieChartCore({
           ? child
           : cloneElement(child as ReactElement<{ index?: number }>, {
               index: sliceCount,
+              key: child.key ?? `pie-slice-${sliceCount}`,
             });
         svgNodes.push(injected);
         sliceCount++;
@@ -400,6 +406,7 @@ const PieChartCore = memo(function PieChartCore({
       <div
         className="grid"
         style={{
+          display: "grid",
           gridTemplateColumns: "1fr",
           gridTemplateRows: "1fr",
           width: size,
@@ -437,7 +444,7 @@ const PieChartCore = memo(function PieChartCore({
         {centerChildren.length > 0 && (
           <div
             className="pointer-events-none flex items-center justify-center"
-            style={{ gridArea: "1 / 1" }}
+            style={{ gridArea: "1 / 1", pointerEvents: "none", display: "flex", alignItems: "center", justifyContent: "center" }}
           >
             {centerChildren}
           </div>
