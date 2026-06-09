@@ -26,6 +26,8 @@ export type { BarProps } from "./bar";
 export { BarXAxis } from "./bar-x-axis";
 export { BarYAxis } from "./bar-y-axis";
 export { SeriesBar } from "./series-bar";
+export { BarChartTooltip } from "./bar-chart-tooltip";
+export type { BarChartTooltipProps } from "./bar-chart-tooltip";
 
 // ── Pie & Ring ───────────────────────────────────────────────────────────────
 export { PieChart } from "./pie-chart";

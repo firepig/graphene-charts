@@ -91,7 +91,7 @@ export function PieCenter({
           "flex items-center justify-center",
           className
         )}
-        style={{ width: centerSize, height: centerSize }}
+        style={{ width: centerSize, height: centerSize, display: "flex", alignItems: "center", justifyContent: "center" }}
       >
         {typeof children === "function"
           ? children({
@@ -114,7 +114,7 @@ export function PieCenter({
         "flex flex-col items-center justify-center text-center",
         className
       )}
-      style={{ width: centerSize, height: centerSize }}
+      style={{ width: centerSize, height: centerSize, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center" }}
     >
       <ChartStatFlow
         formatOptions={formatOptions}
