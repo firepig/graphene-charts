@@ -127,7 +127,7 @@ const BarYAxisInner = memo(function BarYAxisInner({
         <BarYAxisLabel
           bandHeight={item.bandHeight}
           isHovered={hoveredBarIndex === item.index}
-          key={`${item.label}-${item.y}`}
+          key={`${item.label}-${item.y}-${item.index}`}
           label={item.label}
           y={item.y}
         />

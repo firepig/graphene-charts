@@ -166,7 +166,7 @@ const BarXAxisInner = memo(function BarXAxisInner({
     <div className="pointer-events-none absolute inset-0">
       {(labelsToShow as { label: string; x: number; index: number }[]).map((item) => (
         <BarXAxisLabel
-          key={`${item.label}-${item.x}`}
+          key={`${item.label}-${item.x}-${item.index}`}
           label={item.label}
           x={item.x}
           isFaded={hoveredIndex !== null && hoveredIndex !== item.index}
