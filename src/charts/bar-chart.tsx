@@ -42,6 +42,8 @@ export interface BarChartProps {
   data: Record<string, unknown>[];
   /** Key in data for the categorical axis. Default: "name" */
   xDataKey?: string;
+  /** Alias for `xDataKey` — accepted for convenience but `xDataKey` is preferred. */
+  xKey?: string;
   /** Chart margins */
   margin?: Partial<Margin>;
   /** Animation duration in milliseconds. Default: 1100 */
@@ -648,7 +650,8 @@ const ChartCore = memo(function ChartCore({
 
 export function BarChart({
   data,
-  xDataKey = "name",
+  xDataKey,
+  xKey,
   margin: marginProp,
   animationDuration = 1100,
   animationEasing = DEFAULT_ANIMATION_EASING,
@@ -666,6 +669,13 @@ export function BarChart({
 }: BarChartProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const margin = { ...DEFAULT_MARGIN, ...marginProp };
+
+  if (xKey != null && xDataKey == null) {
+    console.warn(
+      '[graphene-charts] BarChart: "xKey" is not a valid prop — use "xDataKey" instead.'
+    );
+  }
+  const resolvedXDataKey = xDataKey ?? xKey ?? "name";
 
   return (
     <div
@@ -691,7 +701,7 @@ export function BarChart({
             stackGap={stackGap}
             stackMode={stackMode}
             width={width}
-            xDataKey={xDataKey}
+            xDataKey={resolvedXDataKey}
           >
             {children}
           </ChartInner>

@@ -7,6 +7,7 @@ import { pie as d3Pie } from "d3-shape";
 import type { Transition } from "motion/react";
 import {
   Children,
+  cloneElement,
   isValidElement,
   memo,
   type ReactElement,
@@ -296,11 +297,12 @@ const PieChartCore = memo(function PieChartCore({
     return () => clearTimeout(timer);
   }, [enterTransition, enterStaggerScale, geometryScrubbing]);
 
-  // Separate children into categories
+  // Separate children into categories, auto-injecting index into PieSlice children
   const { svgChildren, centerChildren, defsChildren } = useMemo(() => {
     const svgNodes: ReactNode[] = [];
     const centerNodes: ReactNode[] = [];
     const defsNodes: ReactElement[] = [];
+    let sliceCount = 0;
 
     Children.forEach(children, (child) => {
       if (!isValidElement(child)) {
@@ -312,8 +314,17 @@ const PieChartCore = memo(function PieChartCore({
         centerNodes.push(child);
       } else if (isDefsComponent(child)) {
         defsNodes.push(child);
-      } else if (geometryScrubbing && isPieSlice(child)) {
-        return;
+      } else if (isPieSlice(child)) {
+        if (geometryScrubbing) return;
+        const hasExplicitIndex =
+          (child.props as { index?: number }).index != null;
+        const injected = hasExplicitIndex
+          ? child
+          : cloneElement(child as ReactElement<{ index?: number }>, {
+              index: sliceCount,
+            });
+        svgNodes.push(injected);
+        sliceCount++;
       } else {
         svgNodes.push(child);
       }

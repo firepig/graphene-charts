@@ -23,7 +23,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsup && node -e \"require('fs').copyFileSync('src/themes.css','dist/themes.css')\"",
+    "build": "tsup",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build && npm run typecheck"

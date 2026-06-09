@@ -119,8 +119,18 @@ export interface GaugeProps {
    * hex stops. Defaults to {@link activeGradient} when omitted.
    */
   inactiveGradient?: readonly [string, string];
-  /** Value passed to {@link PieCenterShell} / NumberFlow */
-  centerValue: number;
+  /**
+   * Maximum value for the scale. When provided, `value` is treated as a raw
+   * number and the fill percent is computed as `value / max * 100`. This lets
+   * you pass real units (e.g. `value={263} max={300}`) instead of pre-computing
+   * a percentage.
+   */
+  max?: number;
+  /**
+   * Value displayed in the gauge center. Defaults to `value`.
+   * When `max` is provided, `value` (the raw number) is used as the default.
+   */
+  centerValue?: number;
   defaultLabel?: string;
   prefix?: string;
   suffix?: string;
@@ -177,6 +187,7 @@ interface GaugeInnerProps extends Omit<GaugeProps, "className" | "minWidth"> {
 
 function GaugeInner({
   value,
+  max,
   totalNotches = 40,
   spacing = 25,
   notchCornerRadius = 0,
@@ -231,7 +242,11 @@ function GaugeInner({
   const notchLength = defaultRadialDepth * depthFactor;
   const innerRadius = outerRadius - notchLength;
 
-  const activeNotches = Math.round((value / 100) * totalNotches);
+  const fillPercent =
+    max != null ? Math.min(100, Math.max(0, (value / max) * 100)) : value;
+  const displayCenterValue = centerValue ?? value;
+
+  const activeNotches = Math.round((fillPercent / 100) * totalNotches);
 
   const totalAngle = endAngle - startAngle;
   const availableAngle = totalAngle * (1 - spacing / 100);
@@ -467,7 +482,7 @@ function GaugeInner({
         style={{ paddingTop: size * 0.08 }}
       >
         <PieCenterShell
-          centerValue={centerValue}
+          centerValue={displayCenterValue}
           contextSize={size}
           defaultLabel={defaultLabel}
           formatOptions={formatOptions}

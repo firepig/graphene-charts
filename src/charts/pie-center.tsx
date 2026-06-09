@@ -1,6 +1,6 @@
 
 
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { cn } from "../lib/utils";
 import {
   chartCenterContainerClassName,
@@ -19,13 +19,19 @@ export interface PieCenterProps {
   defaultLabel?: string;
   /** Format options for NumberFlow. Default: standard notation */
   formatOptions?: ChartStatFlowFormat;
-  /** Custom render function for complete control over center content */
-  children?: (props: {
-    value: number;
-    label: string;
-    isHovered: boolean;
-    data: { label: string; value: number; color?: string; fill?: string };
-  }) => ReactNode;
+  /**
+   * Custom center content. Accepts either static JSX or a render function.
+   * The render function receives hover state and is called on every render so
+   * you can react to hover without crashing when nothing is hovered.
+   */
+  children?:
+    | ReactNode
+    | ((props: {
+        value: number;
+        label: string;
+        isHovered: boolean;
+        data: { label: string; value: number; color?: string; fill?: string };
+      }) => ReactNode);
   /** Additional class name for the container */
   className?: string;
   /** Class name for the value text. Scales with center size via container queries. */
@@ -76,8 +82,8 @@ export function PieCenter({
     return null;
   }
 
-  // If custom render function is provided, use it
-  if (children && hoveredData) {
+  // If custom children are provided, use them instead of the default stat display
+  if (children != null) {
     return (
       <div
         className={cn(
@@ -87,12 +93,14 @@ export function PieCenter({
         )}
         style={{ width: centerSize, height: centerSize }}
       >
-        {children({
-          value: displayValue,
-          label: displayLabel,
-          isHovered: effectiveHoveredIndex !== null,
-          data: hoveredData,
-        })}
+        {typeof children === "function"
+          ? children({
+              value: displayValue,
+              label: displayLabel,
+              isHovered: effectiveHoveredIndex !== null,
+              data: hoveredData ?? { label: displayLabel, value: displayValue },
+            })
+          : children}
       </div>
     );
   }

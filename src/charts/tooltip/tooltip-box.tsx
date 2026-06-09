@@ -50,6 +50,19 @@ function TooltipBoxInner({
   const tooltipWidthRef = useRef(180);
   const tooltipHeightRef = useRef(80);
 
+  // The portal renders with position:absolute, so the container must be a
+  // positioning context. If it isn't, adopt it (and restore on unmount).
+  useLayoutEffect(() => {
+    const computed = getComputedStyle(container);
+    if (computed.position === "static") {
+      const prev = container.style.position;
+      container.style.position = "relative";
+      return () => {
+        container.style.position = prev;
+      };
+    }
+  }, [container]);
+
   const tw = tooltipWidthRef.current;
   const th = tooltipHeightRef.current;
   const shouldFlipX = x + tw + offset > containerWidth;

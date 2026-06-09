@@ -1,3 +1,4 @@
+import { copyFileSync } from "node:fs";
 import { defineConfig } from "tsup";
 
 export default defineConfig({
@@ -9,4 +10,7 @@ export default defineConfig({
   clean: true,
   external: ["react", "react-dom"],
   treeshake: true,
+  async onSuccess() {
+    copyFileSync("src/themes.css", "dist/themes.css");
+  },
 });
