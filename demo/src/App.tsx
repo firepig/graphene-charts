@@ -595,7 +595,7 @@ export default function App() {
             </div>
           </div>
           <div className="hero-links">
-            <a className="hero-link hero-link-primary" href="https://github.com/YOUR_USERNAME/graphene-charts" target="_blank" rel="noreferrer">
+            <a className="hero-link hero-link-primary" href="https://github.com/firepig/graphene-charts" target="_blank" rel="noreferrer">
               GitHub
             </a>
             <a className="hero-link" href="#charts">Browse charts ↓</a>
