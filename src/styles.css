@@ -1,0 +1,39 @@
+/*
+ * Graphene Charts — Pre-compiled Tailwind styles
+ *
+ * This file is the Tailwind v4 input. During the library build it is compiled
+ * to dist/styles.css which consumers can import instead of setting up Tailwind.
+ *
+ * Usage (without Tailwind in your project):
+ *   import "graphene-charts/styles.css";
+ *   import "graphene-charts/themes.css";
+ *
+ * Usage (with Tailwind in your project — do NOT import this file):
+ *   @source "./node_modules/graphene-charts/src";   ← in your CSS
+ *   import "graphene-charts/themes.css";            ← in your entry file
+ */
+
+@import "tailwindcss";
+@source "./**/*.{tsx,ts}";
+
+/*
+ * Map Graphene's semantic color tokens to Tailwind utility classes.
+ * These resolve against the CSS variables defined in themes.css, so
+ * swapping a theme class (gc-dark, gc-light, gc-ocean, …) automatically
+ * updates every chart that uses these utilities.
+ */
+@theme {
+  /* Text / foreground colors */
+  --color-foreground:               var(--chart-foreground, #e2e8f0);
+  --color-muted-foreground:         var(--chart-foreground-muted, #475569);
+  --color-background:               var(--chart-surface, #0d1117);
+  --color-chart-label:              var(--chart-label, #64748b);
+
+  /* Legend colors */
+  --color-legend-foreground:        var(--chart-foreground, #e2e8f0);
+  --color-legend-muted-foreground:  var(--chart-foreground-muted, #475569);
+  --color-legend-track:             var(--chart-border, #1e2535);
+
+  /* Surface / muted backgrounds */
+  --color-muted:                    var(--chart-surface-raised, #161b27);
+}
